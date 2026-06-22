@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识库 | 世界杯信息入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f2f6f9;
+            color: #1c2e3b;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #1c4b5e;
+            position: relative;
+            display: inline-block;
+        }
+
+        .header h1::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 3px;
+            background: #4a9e8e;
+            margin: 0.6rem auto 0;
+            border-radius: 2px;
+        }
+
+        .header p {
+            margin-top: 1rem;
+            color: #3c5a68;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1rem;
+        }
+
+        .subhead {
+            margin-top: 0.8rem;
+            color: #4a7a7a;
+            font-size: 0.95rem;
+            border-top: 1px solid #d0e2e0;
+            padding-top: 1rem;
+            display: inline-block;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .grid-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .grid-cards {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 4px 12px rgba(0, 30, 30, 0.05);
+            border-left: 4px solid #4a9e8e;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 40, 40, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #1c4b5e;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card h3 .ico {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #4a9e8e;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .card p {
+            color: #2d4b56;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .card .tag {
+            display: inline-block;
+            background: #e1f0ed;
+            color: #1c5c5c;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            margin-top: 0.6rem;
+            letter-spacing: 0.02em;
+        }
+
+        .intro-block {
+            background: #e9f3f1;
+            border-radius: 20px;
+            padding: 2rem 2rem 1.8rem;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .intro-block h2 {
+            font-size: 1.5rem;
+            font-weight: 450;
+            color: #1c4b5e;
+            margin-bottom: 1rem;
+        }
+
+        .intro-block p {
+            color: #1e3a44;
+            margin-bottom: 0.8rem;
+        }
+
+        .intro-block a {
+            color: #1b6b6b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #7ebdb0;
+            font-weight: 450;
+        }
+
+        .intro-block a:hover {
+            color: #0d4f4f;
+        }
+
+        .notice-area {
+            background: #ffffffd9;
+            backdrop-filter: blur(2px);
+            border: 1px solid #cfe5e0;
+            border-radius: 18px;
+            padding: 1.6rem 1.8rem;
+            margin: 1.8rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notice-area .left {
+            flex: 1 1 240px;
+        }
+
+        .notice-area .left p {
+            color: #1d434f;
+            font-size: 0.95rem;
+        }
+
+        .notice-area .right {
+            margin-top: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .notice-area .right .badge {
+            background: #4a9e8e;
+            color: white;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            display: inline-block;
+            letter-spacing: 0.03em;
+        }
+
+        .faq-mini {
+            background: white;
+            border-radius: 18px;
+            padding: 1.8rem;
+            margin: 1.8rem 0;
+            box-shadow: 0 2px 10px rgba(0, 30, 30, 0.03);
+        }
+
+        .faq-mini h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #1c4b5e;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #d7e8e4;
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #edf5f2;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item strong {
+            color: #1c4b5e;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .faq-item p {
+            color: #2b4b57;
+            font-size: 0.92rem;
+        }
+
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            margin: 2rem 0 1rem;
+            padding: 1.2rem 0;
+            border-top: 1px solid #cfe0db;
+        }
+
+        .related-links span {
+            color: #2e5d5d;
+            font-size: 0.9rem;
+        }
+
+        .related-links a {
+            color: #1b6b6b;
+            text-decoration: none;
+            border-bottom: 1px dotted #7ebdb0;
+            font-size: 0.9rem;
+        }
+
+        .related-links a:hover {
+            color: #084f4f;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #54747a;
+            font-size: 0.85rem;
+            margin-top: 3rem;
+            border-top: 1px solid #d0e2de;
+            padding-top: 1.8rem;
+        }
+
+        .inline-link-highlight {
+            background: #e3f1ee;
+            padding: 0 0.2rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header class="header">
+            <h1>世界杯 · 信息索引</h1>
+            <p>一个围绕赛事资料、背景与稳定访问路径的轻量知识库，方便快速定位常用内容。</p>
+            <div class="subhead">入口说明 · 目录导览 · 相关提示</div>
+        </header>
+
+        <!-- 介绍区块：页面定位与稳定入口说明 -->
+        <div class="intro-block">
+            <h2>关于这个页面</h2>
+            <p>这里整理了一些与世界杯相关的背景信息、常见问题摘要以及一个稳定的访问指向。如果你需要直接访问赛事相关内容的主页，可以记住下面这个链接：<a href="https://portal-united26.com">世界杯</a>。它指向一个独立的资料门户，适合作为日常查看的固定书签。</p>
+            <p>页面本身不收集任何数据，仅作索引与介绍用途。内容基于公开资料与常见问题整理，力求简洁克制。</p>
+        </div>
+
+        <!-- 网格卡片区：知识库目录感 -->
+        <div class="grid-cards">
+            <div class="card">
+                <h3><span class="ico"></span>赛事背景</h3>
+                <p>世界杯的历史跨度、举办周期、主要赛制演变。从初创时的13支队伍到现今的48队格局，赛程结构几经调整。</p>
+                <span class="tag">基础</span>
+            </div>
+            <div class="card">
+                <h3><span class="ico"></span>历届冠军</h3>
+                <p>1930年至今的冠军列表、举办国与决赛比分。巴西五次夺冠居首，德国与意大利各四次紧随其后。</p>
+                <span class="tag">数据</span>
+            </div>
+            <div class="card">
+                <h3><span class="ico"></span>纪录与趣闻</h3>
+                <p>最多进球球员、最快进球、最大比分差、观众人数纪录等。一些冷门纪录至今仍未被打破。</p>
+                <span class="tag">花絮</span>
+            </div>
+            <div class="card">
+                <h3><span class="ico"></span>主办城市</h3>
+                <p>历届主办国及城市分布，场馆容量与特色。2026年将由美国、加拿大、墨西哥联合举办。</p>
+                <span class="tag">地理</span>
+            </div>
+            <div class="card">
+                <h3><span class="ico"></span>赛制说明</h3>
+                <p>小组赛、淘汰赛、加时与点球规则。近年扩军后小组出线名额与排位规则有所调整。</p>
+                <span class="tag">规则</span>
+            </div>
+            <div class="card">
+                <h3><span class="ico"></span>观赛指引</h3>
+                <p>电视转播、流媒体平台、广播频率等常规收看方式。部分赛事提供多语言解说选择。</p>
+                <span class="tag">实用</span>
+            </div>
+        </div>
+
+        <!-- 提示区 -->
+        <div class="notice-area">
+            <div class="left">
+                <p>📌 如果你需要一个稳定的信息入口，<a href="https://portal-united26.com" style="text-decoration: underline; text-underline-offset: 3px;">世界杯</a> 这个链接可以作为常用起点。页面结构简单，适合快速加载。</p>
+            </div>
+            <div class="right">
+                <span class="badge">稳定指向</span>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <h3>常见问题摘要</h3>
+            <div class="faq-item">
+                <strong>下一次世界杯在什么时候？</strong>
+                <p>2026年世界杯将在美国、加拿大、墨西哥举行，赛程预计于6月至7月展开。</p>
+            </div>
+            <div class="faq-item">
+                <strong>哪里可以查到历届比赛结果？</strong>
+                <p>许多体育数据库网站都有完整记录，你也可以通过 <a href="https://portal-united26.com">世界杯</a> 这个入口找到整理后的索引页面。</p>
+            </div>
+            <div class="faq-item">
+                <strong>本届赛事有多少支球队参加？</strong>
+                <p>2026年起扩军至48支队伍，小组赛阶段分为16个小组，每组3队。</p>
+            </div>
+            <div class="faq-item">
+                <strong>页面上的链接是否长期有效？</strong>
+                <p>所指向的页面保持独立运营，建议定期访问确认最新状态。</p>
+            </div>
+        </div>
+
+        <!-- 相关信息区 -->
+        <div class="related-links">
+            <span>相关信息：</span>
+            <a href="#">国际足联官网</a>
+            <a href="#">历届数据汇总</a>
+            <a href="#">赛事规则手册</a>
+            <span>·</span>
+            <span>稳定入口：<a href="https://portal-united26.com">世界杯</a></span>
+        </div>
+
+        <div class="footer-note">
+            知识库风格索引页 · 内容仅供参考 · 更新于近期
+        </div>
+    </div>
+</body>
+</html>
